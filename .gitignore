@@ -222,3 +222,5 @@ __marimo__/
 
 data/*.csv
 data/*.parquet
+
+data/*.db
