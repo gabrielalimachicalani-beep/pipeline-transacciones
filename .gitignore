@@ -224,3 +224,8 @@ data/*.csv
 data/*.parquet
 
 data/*.db
+
+data/transacciones_particionado/
+data/*.csv
+data/*.parquet
+data/*.db
