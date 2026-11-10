@@ -50,11 +50,11 @@ def transform(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-def load(df: pd.DataFrame, ruta_db: Path, tabla: str = "transacciones") -> None:
-    """Carga el resultado en SQLite (full refresh: reemplaza la tabla)."""
+def load(df: pd.DataFrame, ruta_db: Path, tabla: str = "transacciones", modo: str = "replace") -> None:
+    """Carga en SQLite. modo='replace' = full refresh, modo='append' = incremental."""
     with sqlite3.connect(ruta_db) as conexion:
-        df.to_sql(tabla, conexion, if_exists="replace", index=False)
-    log.info("Load: %s filas cargadas en la tabla '%s'", len(df), tabla)
+        df.to_sql(tabla, conexion, if_exists=modo, index=False)
+    log.info("Load (%s): %s filas cargadas en la tabla '%s'", modo, len(df), tabla)
 
 
 def main() -> None:
